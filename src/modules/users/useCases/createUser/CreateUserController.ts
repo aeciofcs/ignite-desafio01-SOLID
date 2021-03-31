@@ -9,7 +9,7 @@ class CreateUserController {
     // Complete aqui
     const { name, email } = request.body;
     const user = this.createUserUseCase.execute({ name, email });
-    return response.send(user);
+    return response.status(201).send(user);
   }
 }
 
