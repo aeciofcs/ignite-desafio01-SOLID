@@ -10,6 +10,9 @@ class ListAllUsersUseCase {
 
   execute({ user_id }: IRequest): User[] {
     // Complete aqui
+    const userID = user_id;
+    const users = this.usersRepository.list();
+    return users;
   }
 }
 

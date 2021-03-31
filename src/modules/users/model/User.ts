@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from "uuid";
 class User {
   // Complete aqui
 
-  id: string;
+  id?: string;
   name: string;
   admin: boolean;
   email: string;
