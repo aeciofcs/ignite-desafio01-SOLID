@@ -1,0 +1,111 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Desafio 01 - Introdução ao SOLID.",
+        "description": "Aplicação para treinar o aprendizado com Node.JS. Essa será uma aplicação de listagem e cadastro de usuários. Para que a listagem de usuários funcione, o usuário que solicita a listagem deve ser um ADMIN.",
+        "version": "1.0.0"
+    },
+
+    "tags": [{
+        "name": "users",
+        "description": "Gerenciamento de usuários."
+    }],
+
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": ["users"],
+                "summary": "Cria um novo usuário.",
+                "description": "Rota para criação de um novo usuário.",
+                "requestBody": {                    
+                    "description": "Campos obrigatorios para criação de um usuário.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "aecio",
+                                    "email": "aeciofcs@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Operação realizada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "admin": {
+                                            "type": "boolean"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "example": {
+                                        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                        "name": "aecio",
+                                        "admin": false,
+                                        "email": "aeciofcs@gmail.com",
+                                        "created_at": "2021-04-05T17:38:11.181Z",
+                                        "updated_at": "2021-04-05T17:38:11.181Z"
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Email já está sendo utilizado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": "string"
+                                    },
+                                    "example": {
+                                        "error": "User cannot be created! E-mail already exists."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "get": {
+                "tags": ["users"]
+            }
+
+        }
+    }
+}
